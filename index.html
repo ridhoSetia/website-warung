@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Warung</title>
+    <link rel="stylesheet" href="/public/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="categories-container">
+      Filter berdasarkan kategori
+      <button id="sembako">Sembako</button>
+      <button id="bumbu">Bumbu</button>
+      <button id="minuman">Minuman</button>
+      <button id="bumbu">Bumbu</button>
+      <button id="semua">Semua</button>
+    </div>
+
+    <section id="choose-product">
+      <h2>Produk yang dipilih</h2>
+      <p>Tidak ada produk yang dipilih</p>
+      <div class="container"></div>
+    </section>
+
+    <section id="container-product"></section>
+
+    <div class="keranjang-belanja">
+      <div id="total">
+        <h2>Daftar Belanjaan</h2>
+      </div>
+      <div id="harga-total">
+        <h3>Total Belanjaan: Rp</h3>
+        <h3 class="nominal"></h3>
+      </div>
+    </div>
+    <button class="klik-keranjang"><i class="bx bx-cart"><p class="nomor">0</p></i></button>
+
+    <script src="/src/server.js"></script>
+    <script src="/src/app.js"></script>
+  </body>
+</html>

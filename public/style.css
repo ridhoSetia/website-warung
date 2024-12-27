@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 30px 0;
+  font-family: "Space Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 16px;
+}
+
+section {
+  padding: 0 17%;
+  height: 100%;
+}
+
+#container-product {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 5px;
+}
+
+#choose-product .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 5px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+#choose-product h2 {
+  margin-bottom: 10px ;
+}
+
+#product {
+  border: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#product.klik {
+  border: 1px solid blue;
+}
+
+.img img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.content {
+  text-align: center;
+}
+.content .text {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 0.85rem;
+}
+.content .text i {
+  line-height: 14px;
+}
+
+.jmlh {
+  font-size: 1.2rem;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+}
+.jmlh .detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* .jmlh .detail p {
+  font-size: 24px;
+}
+.nominal {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: right;
+  font-size: 16px;
+} */
+
+input#jumlah {
+  width: 40px;
+  font-size: 18px;
+  padding: 3px;
+  margin-top: 3px;
+  border: 2px solid #000;
+}
+
+#harga-total {
+  display: flex;
+  margin-top: 8px;
+}
+
+.keranjang-belanja {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: bisque;
+  bottom: -100%;
+  left: 0;
+}
+.keranjang-belanja #total {
+  margin-top: 10px;
+}
+.keranjang-belanja #total .jmlh p {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.keranjang-belanja #total .jmlh .detail p {
+  line-height: 22px;
+  font-size: 18px;
+}
+.keranjang-belanja.klik {
+  overflow: auto;
+  bottom: 0;
+}
+.keranjang-belanja > div {
+  padding: 0 17%;
+}
+
+.klik-keranjang {
+  position: fixed;
+  left: 50%;
+  border-radius: 50%;
+  bottom: -45px;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+.klik-keranjang.up {
+  bottom: 10px;
+}
+
+.klik-keranjang:hover {
+  background-color: #e7e7e7;
+}
+.klik-keranjang i {
+  font-size: 2rem;
+}
+.klik-keranjang p {
+  font-size: 16px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  display: none;
+}
+
+.categories-container {
+  position: fixed;
+  background-color: aqua;
+  height: 100vh;
+  width: 80px;
+  padding: 30px;
+  top: 0;
+  left: -140px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.categories-container button {
+  padding: 5px;
+}
+
+/* Untuk layar tablet */
+@media screen and (max-width: 1024px) and (min-width: 600px) {
+  section, .keranjang-belanja > div {
+    padding: 0 10%;
+  }
+}
+
+/* Untuk layar ponsel */
+@media screen and (max-width: 600px) {
+  section, .keranjang-belanja > div {
+    padding: 3%;
+  }
+}
