@@ -11,33 +11,47 @@
     />
   </head>
   <body>
-    <div class="categories-container">
-      Filter berdasarkan kategori
-      <button id="sembako">Sembako</button>
-      <button id="bumbu">Bumbu</button>
-      <button id="minuman">Minuman</button>
-      <button id="bumbu">Bumbu</button>
-      <button id="semua">Semua</button>
+    <i class="filter bx bx-filter"></i>
+    <div class="nav">
+      <h1>setia online</h1>
     </div>
+    <section class="warung">
+      <div class="categories-container">
+        <label for="" id="cariProduk"> Cari nama produk:
+          <br>
+          <input type="text" name="cariProduk" id="inputCari" placeholder="nama produk"> 
+        </label>
 
-    <section id="choose-product">
-      <h2>Produk yang dipilih</h2>
-      <p>Tidak ada produk yang dipilih</p>
-      <div class="container"></div>
+        Filter
+        <button id="sembako">Sembako</button>
+        <button id="bumbu">Bumbu</button>
+        <button id="minuman">Minuman</button>
+        <button id="semua">Semua</button>
+      </div>
+
+      <div id="choose-product">
+        <h2>Produk yang dipilih</h2>
+        <p>Tidak ada produk yang dipilih</p>
+        <div class="container"></div>
+      </div>
+
+      <div id="container-product"></div>
+
+      <div class="keranjang-belanja">
+        <div class="detail-pesanan">
+          <div id="total">
+            <h2>Daftar Belanjaan</h2>
+          </div>
+          <div id="harga-total">
+            <h3>Total Belanjaan: Rp</h3>
+            <h3 class="nominal"></h3>
+          </div>
+        </div>
+      </div>
+      <button class="klik-keranjang">
+        <i class="bx bx-cart"><p class="nomor">0</p></i>
+      </button>
     </section>
-
-    <section id="container-product"></section>
-
-    <div class="keranjang-belanja">
-      <div id="total">
-        <h2>Daftar Belanjaan</h2>
-      </div>
-      <div id="harga-total">
-        <h3>Total Belanjaan: Rp</h3>
-        <h3 class="nominal"></h3>
-      </div>
-    </div>
-    <button class="klik-keranjang"><i class="bx bx-cart"><p class="nomor">0</p></i></button>
 
     <script src="/src/server.js"></script>
     <script src="/src/app.js"></script>

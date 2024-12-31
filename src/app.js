@@ -326,6 +326,42 @@ function filterByCategory(category) {
     .catch((error) => console.error("Error:", error));
 }
 
+// Fungsi untuk memfilter barang berdasarkan kategori
+function searchByName(inputNama) {
+  fetch("http://localhost:3000/data")
+    .then((response) => response.json())
+    .then((data) => {
+      let filteredItems = [];
+
+      filteredItems = data.filter((item) => item.nama.includes(inputNama)); // Filter berdasarkan kategori
+
+      displayItems(filteredItems); // Menampilkan barang yang sudah difilter
+
+      document
+        .querySelectorAll("#choose-product .container #product")
+        .forEach((productChoosen) => {
+          let lastIndex = Array.from(productChoosen.classList).length - 2;
+          let lastClassChoosen = Array.from(productChoosen.classList)[
+            lastIndex
+          ];
+          document
+            .querySelectorAll("#container-product #product")
+            .forEach((product) => {
+              let lastClass = Array.from(product.classList).pop();
+              if (lastClassChoosen === lastClass) {
+                console.log(lastClassChoosen);
+                console.log(lastClass);
+                const productMustRemove = document.querySelector(
+                  `#container-product #${product.id}.${lastClass}`
+                );
+                productMustRemove.remove();
+              }
+            });
+        });
+    })
+    .catch((error) => console.error("Error:", error));
+}
+
 async function fetchData() {
   const response = await fetch("http://localhost:3000/data");
   const data = await response.json();
@@ -357,6 +393,20 @@ document
   .querySelector(".klik-keranjang")
   .addEventListener("click", function () {
     document.querySelector(".keranjang-belanja").classList.toggle("klik");
+    document.querySelector(".klik-keranjang i").classList.toggle("bx-x");
+    document.querySelector(".klik-keranjang i p").classList.toggle("klik");
   });
+
+document.querySelector(".filter").addEventListener("click", function () {
+  document.querySelector(".categories-container").classList.toggle("klik");
+  document.querySelector(".filter").classList.toggle("bx-x");
+});
+
+const inputCariProduk = document.querySelector("#inputCari");
+inputCariProduk.addEventListener("input", function () {
+  console.log(inputCariProduk);
+  console.log(inputCariProduk.value);
+  searchByName(inputCariProduk.value);
+});
 
 fetchData();

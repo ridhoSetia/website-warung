@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -13,15 +13,62 @@ body {
   line-height: 16px;
 }
 
+.nav {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 21px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav h1 {
+  color: #fff;
+  background-color: #cdc1ff;
+  border-radius: 5px;
+  padding: 1px 10px;
+  padding-top: 5px;
+  position: fixed;
+}
+.nav p {
+  margin-left: 18px;
+}
+.filter {
+  background-color: #cdc1ff;
+  padding: 4px 0;
+  padding-left: 12px;
+  padding-right: 5px;
+  border-radius: 0 10px 10px 0;
+  margin-top: 6px;
+  top: 0;
+  font-size: 28px;
+  cursor: pointer;
+  position: fixed;
+  z-index: 4;
+  left: 0;
+}
+
+.filter:hover {
+  background-color: #baabf3;
+}
+
 section {
   padding: 0 17%;
-  height: 100%;
+}
+
+.warung {
+  padding-top: 40px;
+  max-height: 100vh;
 }
 
 #container-product {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 5px;
+  max-height: 50vh;
+  overflow: auto;
 }
 
 #choose-product .container {
@@ -31,9 +78,11 @@ section {
   border-bottom: 1px solid #000;
   margin-bottom: 10px;
   padding-bottom: 10px;
+  max-height: 25vh;
+  overflow: auto;
 }
 #choose-product h2 {
-  margin-bottom: 10px ;
+  margin-bottom: 10px;
 }
 
 #product {
@@ -44,9 +93,10 @@ section {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 5px;
 }
 #product.klik {
-  border: 1px solid blue;
+  border: 1px solid #a294f9;
 }
 
 .img img {
@@ -104,10 +154,11 @@ input#jumlah {
 
 .keranjang-belanja {
   position: fixed;
+  z-index: 3;
   width: 100%;
   height: 100vh;
-  background-color: bisque;
-  bottom: -100%;
+  background-color: #f5efff;
+  bottom: -120%;
   left: 0;
 }
 .keranjang-belanja #total {
@@ -127,35 +178,39 @@ input#jumlah {
 }
 .keranjang-belanja > div {
   padding: 0 17%;
+  margin: 30px 0;
 }
 
 .klik-keranjang {
   position: fixed;
-  left: 50%;
-  border-radius: 50%;
-  bottom: -45px;
+  z-index: 4;
+  border-radius: 10px 0 0 10px;
+  top: 0;
+  right: -55px;
   padding: 5px;
+  padding-right: 12px;
+  margin-top: 6px;
   cursor: pointer;
   border: none;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+  background-color: #cdc1ff;
   transition: all 0.2s ease;
 }
 .klik-keranjang.up {
-  bottom: 10px;
+  right: 0;
 }
 
 .klik-keranjang:hover {
-  background-color: #e7e7e7;
+  background-color: #baabf3;
 }
 .klik-keranjang i {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  color: #000;
 }
 .klik-keranjang p {
   font-size: 16px;
   position: absolute;
-  top: -10px;
-  right: -10px;
+  bottom: -10px;
+  left: -10px;
   background-color: red;
   border-radius: 50%;
   width: 22px;
@@ -163,33 +218,65 @@ input#jumlah {
   text-align: center;
   display: none;
 }
+.klik-keranjang i p.klik {
+  opacity: 0;
+}
 
 .categories-container {
   position: fixed;
-  background-color: aqua;
+  z-index: 3;
+  background-color: #f5efff;
   height: 100vh;
-  width: 80px;
-  padding: 30px;
+  padding: 20px;
+  padding-left: 15px;
+  padding-top: 60px;
   top: 0;
-  left: -140px;
+  left: -210px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
 }
+.categories-container.klik {
+  left: 0;
+}
 .categories-container button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgb(0, 0, 0, 0.1);
+  font-family: "Space Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 5px;
+}
+.categories-container button:hover {
+  background-color: #f5f5f5;
+}
+.categories-container #inputCari {
+  margin-top: 2px;
+  width: 140px;
+  font-size: 16px;
   padding: 5px;
+  font-family: "Space Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Untuk layar tablet */
 @media screen and (max-width: 1024px) and (min-width: 600px) {
-  section, .keranjang-belanja > div {
+  section,
+  .keranjang-belanja > div {
     padding: 0 10%;
   }
 }
 
 /* Untuk layar ponsel */
 @media screen and (max-width: 600px) {
-  section, .keranjang-belanja > div {
+  section,
+  .keranjang-belanja > div {
     padding: 3%;
   }
 }
