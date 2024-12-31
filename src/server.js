@@ -5,12 +5,13 @@ const app = express();
 const port = 3000;
 app.use(cors());
 
+// Load credentials
+const credentials = require("../config/credentials.json");
 
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
+  credentials,
   scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 });
-
 
 const sheets = google.sheets({ version: "v4", auth });
 
