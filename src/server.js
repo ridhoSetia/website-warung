@@ -1,12 +1,16 @@
 const express = require("express");
 const { google } = require("googleapis");
 const cors = require("cors");
-const app = express();
-const port = 3000;
-app.use(cors());
+const path = require("path");
 
-// Load credentials
-const credentials = require("../config/credentials.json");
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.static(path.join(__dirname, "../public")));
+
+// Load credentials from environment variable
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 const auth = new google.auth.GoogleAuth({
   credentials,
@@ -16,8 +20,8 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: "v4", auth });
 
 // Spreadsheet details
-const SPREADSHEET_ID = "1vdfYbD-qYvKbnE-G3ZcDI5Chg8OU5G1bkIcmw_o6DLU"; // Ganti dengan ID spreadsheet Anda
-const RANGE = "Sheet1!A1:E"; // Ganti dengan sheet dan range data Anda
+const SPREADSHEET_ID = "1vdfYbD-qYvKbnE-G3ZcDI5Chg8OU5G1bkIcmw_o6DLU";
+const RANGE = "Sheet1!A1:E";
 
 app.get("/data", async (req, res) => {
   try {

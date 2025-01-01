@@ -67,8 +67,8 @@ section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 5px;
-  max-height: 50vh;
-  overflow: auto;
+  /* max-height: 50vh; */
+  /* overflow: auto; */
 }
 
 #choose-product .container {
@@ -78,7 +78,7 @@ section {
   border-bottom: 1px solid #000;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  max-height: 25vh;
+  max-height: 30vh;
   overflow: auto;
 }
 #choose-product h2 {

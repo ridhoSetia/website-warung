@@ -1,3 +1,20 @@
+const productChoosen = document.querySelector("#choose-product .container");
+const nomorKlikKeranjang = document.querySelector(".klik-keranjang .nomor");
+let lastIndex = "";
+let lastClass = "";
+const totalSemuaHargaElement = document.querySelector("#harga-total .nominal");
+let totalSemuaHarga = 0;
+const categoryButtons = document.querySelectorAll(
+  ".categories-container button"
+);
+const klikFilter = document.querySelector(".filter");
+const allProductChoosen = document.querySelectorAll(
+  "#choose-product .container #product"
+);
+const allProductNOTChoosen = document.querySelectorAll(
+  "#container-product #product"
+);
+
 function capitalizeFirstLetter(sentence) {
   return sentence
     .split(" ") // Pecah kalimat menjadi array kata-kata
@@ -14,14 +31,12 @@ const handleClick = (event) => {
   const warningPilihanKosong = Array.from(
     document.querySelector("#choose-product").children
   )[1];
-  const productChoosen = document.querySelector("#choose-product .container");
-  const nomorKlikKeranjang = document.querySelector(".klik-keranjang .nomor");
 
   if (product.classList.contains("klik")) {
     iNomor++;
 
-    let lastIndex = Array.from(product.classList).length - 2;
-    let lastClass = Array.from(product.classList)[lastIndex];
+    lastIndex = Array.from(product.classList).length - 2;
+    lastClass = Array.from(product.classList)[lastIndex];
 
     const total = document.querySelector("#total");
     const isi = document.querySelector(
@@ -46,10 +61,6 @@ const handleClick = (event) => {
     // Simpan ke local storage
     const inputJumlah = document.querySelector(`.inpjmlh.${lastClass}`);
     sessionStorage.setItem(lastClass, inputJumlah.value);
-
-    console.log(
-      `Disimpan ke local storage: ${lastClass} = ${inputJumlah.value}`
-    );
 
     // Tambahkan listener untuk perhitungan total langsung
     const jumlahInput = document.querySelector(`.inpjmlh.${lastClass}`);
@@ -78,9 +89,6 @@ const handleClick = (event) => {
 
       // Simpan perubahan ke local storage
       sessionStorage.setItem(lastClass, jumlahInput.value);
-      console.log(
-        `Diperbarui di local storage: ${lastClass} = ${jumlahInput.value}`
-      );
     });
 
     // Ambil harga produk
@@ -99,19 +107,14 @@ const handleClick = (event) => {
     // Simpan ke local storage
     sessionStorage.setItem(lastClass, 1);
 
-    // Hitung total semua harga
     const semuaTotalPerBarang = document.querySelectorAll(".jmlh .nominal");
-    let totalSemuaHarga = 0;
-
+    // Hitung total semua harga
     semuaTotalPerBarang.forEach((totalBarang) => {
-      const totalText = totalBarang.textContent.replace(/\D/g, ""); // Ambil angka saja
+      const totalText = totalBarang.textContent.replace(/[^\d]/g, ""); // Ambil angka saja
       totalSemuaHarga += Number(totalText);
     });
 
     // Tampilkan total semua harga
-    const totalSemuaHargaElement = document.querySelector(
-      "#harga-total .nominal"
-    );
     const totalSemuaHargaIDN = new Intl.NumberFormat("id-ID").format(
       totalSemuaHarga
     );
@@ -121,7 +124,6 @@ const handleClick = (event) => {
     const storedValue = sessionStorage.getItem(lastClass);
     if (storedValue !== null) {
       jumlahInput.value = storedValue;
-      console.log(`Memuat dari local storage: ${lastClass} = ${storedValue}`);
 
       // Perbarui total sesuai nilai tersimpan
       const intHarga = Number(
@@ -138,20 +140,18 @@ const handleClick = (event) => {
     }
 
     const inputs = document.querySelectorAll("#jumlah");
-
     inputs.forEach((input) => {
       let inputKey = input.classList[1];
       let storedValue = sessionStorage.getItem(inputKey);
 
       if (storedValue !== null) {
         input.value = storedValue;
-        console.log(`Memuat dari local storage: ${inputKey} = ${storedValue}`);
       }
     });
   } else {
     iNomor--;
-    let lastIndex = Array.from(product.classList).length - 1;
-    let lastClass = Array.from(product.classList)[lastIndex];
+    lastIndex = Array.from(product.classList).length - 1;
+    lastClass = Array.from(product.classList)[lastIndex];
 
     // Hapus elemen terkait dari DOM
     let inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
@@ -163,9 +163,6 @@ const handleClick = (event) => {
       const totalToRemove = Number(totalText);
 
       // Kurangi dari total semua harga
-      const totalSemuaHargaElement = document.querySelector(
-        "#harga-total .nominal"
-      );
       let currentTotal = Number(
         totalSemuaHargaElement.textContent.replace(/\D/g, "")
       );
@@ -204,7 +201,6 @@ const handleClick = (event) => {
       let inputJmlh = document.querySelector(
         `.inpjmlh.${inpjmlh.classList[1]}`
       );
-      console.dir(inputJmlh);
 
       let totalHarga = 0;
       let lastClass = inputJmlh.classList[1];
@@ -227,19 +223,14 @@ const handleClick = (event) => {
       let hargaTotalIDN = new Intl.NumberFormat("id-ID").format(totalHarga);
       totalPerBarang.textContent = `Total: Rp${hargaTotalIDN}`;
 
-      // Hitung total semua harga
       const semuaTotalPerBarang = document.querySelectorAll(".jmlh .nominal");
-      let totalSemuaHarga = 0;
-
+      // Hitung total semua harga
       semuaTotalPerBarang.forEach((totalBarang) => {
         const totalText = totalBarang.textContent.replace(/\D/g, ""); // Ambil angka saja
         totalSemuaHarga += Number(totalText);
       });
 
       // Tampilkan total semua harga
-      const totalSemuaHargaElement = document.querySelector(
-        "#harga-total .nominal"
-      );
       const totalSemuaHargaIDN = new Intl.NumberFormat("id-ID").format(
         totalSemuaHarga
       );
@@ -247,9 +238,6 @@ const handleClick = (event) => {
 
       // Update nilai di local storage
       sessionStorage.setItem(lastClass, inputJmlh.value);
-      console.log(
-        `Diperbarui di local storage: ${lastClass} = ${inputJmlh.value}`
-      );
     });
   });
 };
@@ -286,6 +274,22 @@ function displayItems(items) {
   });
 }
 
+const mustRemoveProduct = () => {
+  allProductChoosen.forEach((productChoosen) => {
+    lastIndex = Array.from(productChoosen.classList).length - 2;
+    lastClassChoosen = Array.from(productChoosen.classList)[lastIndex];
+    allProductNOTChoosen.forEach((product) => {
+      lastClass = Array.from(product.classList).pop();
+      if (lastClassChoosen === lastClass) {
+        const productMustRemove = document.querySelector(
+          `#container-product #${product.id}.${lastClass}`
+        );
+        productMustRemove.remove();
+      }
+    });
+  });
+};
+
 // Fungsi untuk memfilter barang berdasarkan kategori
 function filterByCategory(category) {
   fetch("http://localhost:3000/data")
@@ -301,27 +305,7 @@ function filterByCategory(category) {
 
       displayItems(filteredItems); // Menampilkan barang yang sudah difilter
 
-      document
-        .querySelectorAll("#choose-product .container #product")
-        .forEach((productChoosen) => {
-          let lastIndex = Array.from(productChoosen.classList).length - 2;
-          let lastClassChoosen = Array.from(productChoosen.classList)[
-            lastIndex
-          ];
-          document
-            .querySelectorAll("#container-product #product")
-            .forEach((product) => {
-              let lastClass = Array.from(product.classList).pop();
-              if (lastClassChoosen === lastClass) {
-                console.log(lastClassChoosen);
-                console.log(lastClass);
-                const productMustRemove = document.querySelector(
-                  `#container-product #${product.id}.${lastClass}`
-                );
-                productMustRemove.remove();
-              }
-            });
-        });
+      mustRemoveProduct();
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -337,27 +321,7 @@ function searchByName(inputNama) {
 
       displayItems(filteredItems); // Menampilkan barang yang sudah difilter
 
-      document
-        .querySelectorAll("#choose-product .container #product")
-        .forEach((productChoosen) => {
-          let lastIndex = Array.from(productChoosen.classList).length - 2;
-          let lastClassChoosen = Array.from(productChoosen.classList)[
-            lastIndex
-          ];
-          document
-            .querySelectorAll("#container-product #product")
-            .forEach((product) => {
-              let lastClass = Array.from(product.classList).pop();
-              if (lastClassChoosen === lastClass) {
-                console.log(lastClassChoosen);
-                console.log(lastClass);
-                const productMustRemove = document.querySelector(
-                  `#container-product #${product.id}.${lastClass}`
-                );
-                productMustRemove.remove();
-              }
-            });
-        });
+      mustRemoveProduct();
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -372,9 +336,6 @@ async function fetchData() {
   displayItems(data);
 
   // Tambahkan event listener untuk kategori filter
-  const categoryButtons = document.querySelectorAll(
-    ".categories-container button"
-  );
   categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const category = button.id;
@@ -383,7 +344,6 @@ async function fetchData() {
   });
 
   const products = document.querySelectorAll("#product");
-
   products.forEach((product) => {
     product.addEventListener("click", handleClick);
   });
@@ -397,15 +357,13 @@ document
     document.querySelector(".klik-keranjang i p").classList.toggle("klik");
   });
 
-document.querySelector(".filter").addEventListener("click", function () {
+klikFilter.addEventListener("click", function () {
   document.querySelector(".categories-container").classList.toggle("klik");
-  document.querySelector(".filter").classList.toggle("bx-x");
+  klikFilter.classList.toggle("bx-x");
 });
 
 const inputCariProduk = document.querySelector("#inputCari");
 inputCariProduk.addEventListener("input", function () {
-  console.log(inputCariProduk);
-  console.log(inputCariProduk.value);
   searchByName(inputCariProduk.value);
 });
 
