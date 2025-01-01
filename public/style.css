@@ -157,7 +157,7 @@ input#jumlah {
   width: 100%;
   height: 100vh;
   background-color: #f5efff;
-  bottom: -120%;
+  top: -120%;
   left: 0;
 }
 .keranjang-belanja #total {
@@ -173,7 +173,7 @@ input#jumlah {
 }
 .keranjang-belanja.klik {
   overflow: auto;
-  bottom: 0;
+  top: 0;
 }
 .keranjang-belanja > div {
   padding: 0 17%;
