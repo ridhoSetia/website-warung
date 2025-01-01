@@ -153,12 +153,13 @@ input#jumlah {
 
 .keranjang-belanja {
   position: fixed;
-  z-index: 3;
+  z-index: 5;
   width: 100%;
   height: 100vh;
   background-color: #f5efff;
-  top: -120%;
+  top: 0;
   left: 0;
+  display: none;
 }
 .keranjang-belanja #total {
   margin-top: 10px;
@@ -173,7 +174,7 @@ input#jumlah {
 }
 .keranjang-belanja.klik {
   overflow: auto;
-  top: 0;
+  display: block;
 }
 .keranjang-belanja > div {
   padding: 0 17%;
@@ -182,7 +183,7 @@ input#jumlah {
 
 .klik-keranjang {
   position: fixed;
-  z-index: 4;
+  z-index: 6;
   border-radius: 10px 0 0 10px;
   top: 0;
   right: -55px;
