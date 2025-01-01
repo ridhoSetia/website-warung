@@ -2,6 +2,7 @@ const express = require("express");
 const { google } = require("googleapis");
 const cors = require("cors");
 const path = require("path");
+const { json } = require("body-parser");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,7 +11,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "../public")));
 
 // Load credentials from environment variable
-const credentials = (process.env.GOOGLE_CREDENTIALS);
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 const auth = new google.auth.GoogleAuth({
   credentials,
@@ -53,7 +54,10 @@ app.get("/data", async (req, res) => {
     res.json(formattedData);
   } catch (error) {
     console.error("Error fetching data:", error);
-    console.error("Error fetching data:", error.response ? error.response.data : error.message);
+    console.error(
+      "Error fetching data:",
+      error.response ? error.response.data : error.message
+    );
     res.status(500).send("Error fetching data");
   }
 });

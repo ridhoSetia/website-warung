@@ -1,5 +1,3 @@
-console.log("GOOGLE_CREDENTIALS:", process.env.GOOGLE_CREDENTIALS);
-
 const productChoosen = document.querySelector("#choose-product .container");
 const nomorKlikKeranjang = document.querySelector(".klik-keranjang .nomor");
 let lastIndex = "";
