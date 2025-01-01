@@ -23,6 +23,11 @@ const sheets = google.sheets({ version: "v4", auth });
 const SPREADSHEET_ID = "1vdfYbD-qYvKbnE-G3ZcDI5Chg8OU5G1bkIcmw_o6DLU";
 const RANGE = "Sheet1!A1:E";
 
+// Sajikan file index.html dari root
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../index.html"));
+});
+
 app.get("/data", async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
