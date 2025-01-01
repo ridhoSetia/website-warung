@@ -53,6 +53,7 @@ app.get("/data", async (req, res) => {
     res.json(formattedData);
   } catch (error) {
     console.error("Error fetching data:", error);
+    console.error("Error fetching data:", error.response ? error.response.data : error.message);
     res.status(500).send("Error fetching data");
   }
 });
