@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // Load credentials from environment variable
 const credentials = (process.env.GOOGLE_CREDENTIALS);
+console.log("GOOGLE_CREDENTIALS:", process.env.GOOGLE_CREDENTIALS);
 
 const auth = new google.auth.GoogleAuth({
   credentials,
