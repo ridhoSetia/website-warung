@@ -292,7 +292,7 @@ const mustRemoveProduct = () => {
 
 // Fungsi untuk memfilter barang berdasarkan kategori
 function filterByCategory(category) {
-  fetch("http://localhost:3000/data")
+  fetch("https://setiaonline.vercel.app/data")
     .then((response) => response.json())
     .then((data) => {
       let filteredItems = [];
@@ -312,7 +312,7 @@ function filterByCategory(category) {
 
 // Fungsi untuk memfilter barang berdasarkan kategori
 function searchByName(inputNama) {
-  fetch("http://localhost:3000/data")
+  fetch("https://setiaonline.vercel.app/data")
     .then((response) => response.json())
     .then((data) => {
       let filteredItems = [];
@@ -327,7 +327,7 @@ function searchByName(inputNama) {
 }
 
 async function fetchData() {
-  const response = await fetch("http://localhost:3000/data");
+  const response = await fetch("https://setiaonline.vercel.app/data");
   const data = await response.json();
 
   const container = document.getElementById("container-product");
