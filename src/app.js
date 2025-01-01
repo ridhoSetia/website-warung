@@ -256,7 +256,7 @@ function displayItems(items) {
     product.innerHTML = `
     <div class="content ${item.kategori}">
       <div class="img">
-        <img src="./public/img/gambar-${item.gambar}" alt="${item.nama}" />
+        <img src="/img/gambar-${item.gambar}" alt="${item.nama}" />
       </div>
       <div class="description">
         <div class="text">
