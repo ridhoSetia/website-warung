@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "../public")));
 
 // Load credentials from environment variable
-const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+const credentials = (process.env.GOOGLE_CREDENTIALS);
 
 const auth = new google.auth.GoogleAuth({
   credentials,
