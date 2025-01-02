@@ -155,6 +155,7 @@ const handleClick = (event) => {
 
     // Hapus elemen terkait dari DOM
     let inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
+    console.log(inputToRemove)
     if (inputToRemove) {
       // Ambil nilai total yang akan dihapus
       const totalText = inputToRemove

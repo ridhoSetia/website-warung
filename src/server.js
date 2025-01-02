@@ -60,8 +60,4 @@ app.get("/data", async (req, res) => {
     );
     res.status(500).send("Error fetching data");
   }
-});
-
-app.listen(port, () =>
-  console.log(`Server running at http://localhost:${port}`)
-);
+})
