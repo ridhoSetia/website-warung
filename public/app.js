@@ -3,7 +3,6 @@ const nomorKlikKeranjang = document.querySelector(".klik-keranjang .nomor");
 let lastIndex = "";
 let lastClass = "";
 const totalSemuaHargaElement = document.querySelector("#harga-total .nominal");
-let totalSemuaHarga = 0;
 const categoryButtons = document.querySelectorAll(
   ".categories-container button"
 );
@@ -107,6 +106,7 @@ const handleClick = (event) => {
     // Simpan ke local storage
     sessionStorage.setItem(lastClass, 1);
 
+    let totalSemuaHarga = 0;
     const semuaTotalPerBarang = document.querySelectorAll(".jmlh .nominal");
     // Hitung total semua harga
     semuaTotalPerBarang.forEach((totalBarang) => {
@@ -155,14 +155,14 @@ const handleClick = (event) => {
 
     // Hapus elemen terkait dari DOM
     const inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
-    console.log(inputToRemove)
+    console.log(inputToRemove);
     if (inputToRemove) {
       // Ambil nilai total yang akan dihapus
       const totalText = inputToRemove
         .querySelector(".nominal")
         .textContent.replace(/\D/g, "");
       const totalToRemove = Number(totalText);
-      console.log(totalToRemove)
+      console.log(totalToRemove);
 
       // Kurangi dari total semua harga
       let currentTotal = Number(
@@ -225,6 +225,7 @@ const handleClick = (event) => {
       let hargaTotalIDN = new Intl.NumberFormat("id-ID").format(totalHarga);
       totalPerBarang.textContent = `Total: Rp${hargaTotalIDN}`;
 
+      let totalSemuaHarga = 0;
       const semuaTotalPerBarang = document.querySelectorAll(".jmlh .nominal");
       // Hitung total semua harga
       semuaTotalPerBarang.forEach((totalBarang) => {
