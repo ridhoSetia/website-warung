@@ -154,7 +154,7 @@ const handleClick = (event) => {
     lastClass = Array.from(product.classList)[lastIndex];
 
     // Hapus elemen terkait dari DOM
-    let inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
+    const inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
     console.log(inputToRemove)
     if (inputToRemove) {
       // Ambil nilai total yang akan dihapus
@@ -162,6 +162,7 @@ const handleClick = (event) => {
         .querySelector(".nominal")
         .textContent.replace(/\D/g, "");
       const totalToRemove = Number(totalText);
+      console.log(totalToRemove)
 
       // Kurangi dari total semua harga
       let currentTotal = Number(
