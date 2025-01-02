@@ -155,14 +155,12 @@ const handleClick = (event) => {
 
     // Hapus elemen terkait dari DOM
     const inputToRemove = document.querySelector(`.jmlh.${lastClass}`);
-    console.log(inputToRemove);
     if (inputToRemove) {
       // Ambil nilai total yang akan dihapus
       const totalText = inputToRemove
         .querySelector(".nominal")
         .textContent.replace(/\D/g, "");
       const totalToRemove = Number(totalText);
-      console.log(totalToRemove);
 
       // Kurangi dari total semua harga
       let currentTotal = Number(
@@ -320,7 +318,7 @@ function searchByName(inputNama) {
     .then((data) => {
       let filteredItems = [];
 
-      filteredItems = data.filter((item) => item.nama.includes(inputNama)); // Filter berdasarkan kategori
+      filteredItems = data.filter((item) => item.nama.includes(inputNama.toLowerCase())); // Filter berdasarkan kategori
 
       displayItems(filteredItems); // Menampilkan barang yang sudah difilter
 
